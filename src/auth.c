@@ -581,6 +581,13 @@ void auth_postprocess_source (auth_client *auth_user)
         client->aux_data = (int64_t)strdup("metadata");
         admin_mount_request (client);
     }
+	else if (strncmp ("/admin/listclients", req, 18) == 0)
+	{
+        DEBUG1 ("admin listclients request on mount %s", mount);
+        client->mount = mount;
+        client->aux_data = (int64_t)strdup("listclients");
+        admin_mount_request (client);
+	}
     else
     {
         DEBUG1 ("on mountpoint %s", mount);
